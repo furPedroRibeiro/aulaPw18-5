@@ -1,0 +1,34 @@
+body{
+	background-image: url('imgs/bg.png');
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.meio{
+	margin-top:20vh;
+}
+.login{
+	background: linear-gradient(177deg, #08cdba63, #f2f51647);
+    background-size: 400% 400%;
+    animation: gradient 5s cubic-bezier(0.4, 0, 1, 1) infinite;
+}
+.cadastro{
+	background: linear-gradient(177deg, #088acdad, #b4ff0042);
+    background-size: 400% 400%;
+    animation: gradient 5s cubic-bezier(0.4, 0, 1, 1) infinite;
+}
+.card .input-field>label{
+	color:#521010;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
