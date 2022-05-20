@@ -1,6 +1,4 @@
-<?php
-	include ('conexao.php');
-?>
+<?php include ('conexao.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +18,7 @@
 		 <div class="row meio">
 		    <div class="col s6 offset-s3 m6 offset-m3">
 		      <div class="card">
-		        <div class="car d-content login">
+		        <div class="card-content login">
 		          <span class="card-title center">Bem vindo ao Projeto!</span>
 			          <form class="form white-text" method="post">
 			          	<div class="row">
@@ -51,21 +49,23 @@
 </body>
 </html>
 <?php
-	if($_POST){
-		$sql = 'SELECT * FROM user WHERE email ="'.$_POST['user'].'" AND senha ="'.$_POST['senha'].'"';
-		$res = $con->query($sql);
-		if($res->num_rows>0){
-			//usuário existe
-			$user = $res-> fetch_object();
-			$SESSION ['cd'] = $user->cd;
-			$SESSION ['nome'] = $user->nome;
-			$SESSION ['email'] = $user->email;
-			$SESSION ['foto'] = $user->foto;
-			$SESSION ['logado'] = true;
-			vai('location: home.php');
-		} else {
-			// não existe
-			msg("Usuário e/ou senha inválidos!");
-		}
+if($_POST){
+	$sql = 'SELECT * FROM user WHERE 
+			email ="'.$_POST['user'].'" 
+			AND senha ="'.$_POST['senha'].'"';
+	$res = $con->query($sql);
+	if($res->num_rows > 0){
+		//usuário existe
+		$user = $res->fetch_object();
+		$_SESSION['cd'] = $user->cd;
+		$_SESSION['nome'] = $user->nome;
+		$_SESSION['email'] = $user->email;
+		$_SESSION['foto'] = $user->foto;
+		$_SESSION['logado'] = true;
+		vai('home.php');
+	}else{
+		//não existe
+		msg("Usuário e/ou senha Inválidos!");
 	}
+}
 ?>

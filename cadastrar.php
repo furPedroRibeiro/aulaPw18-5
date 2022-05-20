@@ -1,6 +1,4 @@
-<?php
-	include ('conexao.php');
-?>
+<?php include ('conexao.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,14 +54,18 @@
 	</div>	
 </body>
 </html>
-<?php  
-	if($_POST){
-		$sql = 'INSERT INTO user (nome,email,senha) VALUES ("'.$_POST['user'].'","'.$_POST['email'].'","'.$_POST['senha'].'")';
-		$resultado = $con->query($sql);
-		if($resultado){
-			msg("Cadastrado com sucesso");
-		} else{
-			msg("Erro ao cadastrar, tente novamente!");
-		}
+<?php 
+
+
+if($_POST){
+	$sql = 'INSERT INTO user (nome,email,senha) VALUES ("'.$_POST['user'].'","'.$_POST['email'].'","'.$_POST['senha'].'")';
+	$resultado = $con->query($sql);
+	if($resultado){
+		msg("Cadastrado com sucesso");
+		msg("Já pode entrar! =)");
+	}else{
+		msg("Erro ao cadastrar, tente novamente!");
 	}
+}
+
 ?>
