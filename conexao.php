@@ -10,7 +10,21 @@ if(!$con){
 }
 function ListarCategorias(){
 	$sql = 'SELECT * FROM categoria ';
-	$res = $GLOBAL['con']->query($sql);
+	$res = $GLOBALS['con']->query($sql);
+	return $res;
+}
+function criarJogo($nome, $categoria){
+	$sql = 'INSERT INTO jogo VALUES(null, "'.$nome.'", '.$_SESSION['cd'].','.$categoria.')';
+	$res = $GLOBALS['con']->query($sql);
+	if($res){
+		msg("Jogo Cadastrado!");
+	} else{
+		msg("Erro ao cadastrar jogo :(");
+	}
+}
+function ListarJogos($usuario){
+	$sql = 'SELECT * FROM jogo WHERE id_usuario='.$usuario;
+	$res = $GLOBALS['con']->query($sql);
 	return $res;
 }
 function Proteger(){

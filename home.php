@@ -39,25 +39,36 @@ Proteger();
 							 	<label for="nome">Nome do jogo:</label>
 						 	</div>
 							 <div class="input-field col s3">
-								 <select name="categoria" id="">
-									 <option value="">Selecione...</option>
 									 <?php
 									 	$todas = ListarCategorias();
 										 while($cat = $todas->fetch_object()){
-											 echo '<option value='.$cat->cd.'>';
-											 echo $cat->nome;
-											 echo '</option>';
+											 echo '<p>
+											 <label>
+											 <input name="categoria" type="radio" value="' .$cat->cd.'"/>
+											 <span>'.$cat->nome.'</span>
+											 </label>
+											 <p>';
 										 }
 									 ?>
-								 </select>
 							 </div>
-						 	<div class="input-field col s4">
+						 	<div class="input-field col s3">
 							 	<input type="submit" class="btn" value="Cadastrar">
 						 	</div>
 					 	</div>
 					</fieldset>
 				 </form>
 			 </div>
+		 </div>
+		 <div class="col s8 m8 offset-s2 offset-m2">
+			 <h1>Meus jogos</h1>
+			 <?php
+			 	$todos = ListarJogos($_SESSION['cd']);
+				 while($jogo = $todos-> fetch_object()){
+					 echo '<a href="perguntas.php?game='.$jogo->cd.'">
+					 <button class="btn">'.$jogo->nome.'</button>
+					 </a>';
+				 }
+			 ?>
 		 </div>
 	</div>	
 </body>
@@ -67,7 +78,7 @@ if(isset($_POST['nome'])){
 	$sql = 'INSERT INTO jogo (nome, id_usuario, Id_categoria) VALUES ("'.$_POST['nome'].'", '.$_SESSION['cd']. ','.$_POST['categoria'].')';
 	$res = $con->query($sql);
 	if($res){
-		msg("jogo cadastro!");
+		msg("jogo cadastrado!");
 	}else{
 		msg("Erro ao cadastrar jogo!");
 	}
